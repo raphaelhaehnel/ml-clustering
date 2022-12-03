@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import functools
 import customtkinter as ctk
-import tkinter as tk
 
 
 def generate_data(n=100, c=2):
@@ -104,24 +103,7 @@ def login():
     print("Logging in...")
 
 
-if __name__ == "__main__":
-
-    k = 3
-    n = 100
-    c = k
-
-    data = generate_data(n, c)
-    mu = generate_means(k)
-    show_plot(data, mu, 0, save=True)
-
-    for i in range(16):
-
-        data = assignment(data, mu)
-        show_plot(data, mu, i, save=True)
-        mu = centroid_update(data, k)
-        i += 1
-        show_plot(data, mu, i, save=True)
-
+def create_ui():
     ctk.set_appearance_mode("dark")
     ctk.set_default_color_theme("dark-blue")
     root = ctk.CTk()
@@ -144,3 +126,24 @@ if __name__ == "__main__":
     checkbox.pack(pady=12, padx=10)
 
     root.mainloop()
+
+
+if __name__ == "__main__":
+
+    k = 3
+    n = 100
+    c = k
+
+    data = generate_data(n, c)
+    mu = generate_means(k)
+    show_plot(data, mu, 0, save=True)
+
+    for i in range(16):
+
+        data = assignment(data, mu)
+        show_plot(data, mu, i, save=True)
+        mu = centroid_update(data, k)
+        i += 1
+        show_plot(data, mu, i, save=True)
+
+    create_ui()
